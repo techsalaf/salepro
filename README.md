@@ -1,4 +1,4 @@
-# SalePro — Point-of-Sale / Retail Management Web Application
+# SalePro — Point-of-Sale / Inventory Management Web Application
 
 This repository contains SalePro, a Laravel-based web application for retail, inventory and sales management. This README provides a comprehensive guide to setting up, developing, testing, and deploying the application on a developer workstation (Windows/XAMPP) as well as common operational tasks.
 
