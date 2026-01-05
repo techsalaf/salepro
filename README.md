@@ -55,7 +55,7 @@ npm install
 npm run dev
 ```
 
-5. Open browser to `http://localhost/salepro/public` or configure a virtual host to point to the `public` directory for a cleaner URL.
+5. Open browser to `http://localhost/salepro` or configure a virtual host to point to the `public` directory for a cleaner URL.
 
 Note: On Windows you might need to use `copy` instead of `cp` or perform the `.env` copy via Explorer.
 
@@ -76,7 +76,7 @@ cd salepro
 	- `APP_NAME`, `APP_ENV`, `APP_URL`
 	- `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
 	- `MAIL_*` settings for password resets and notifications
-	- Payment provider keys (`STRIPE_*`, `RAZORPAY_*`, `XENDIT_*`, etc.) if used
+	- Payment provider keys (`PAYSTACK_*`, `FLUTTERWAVE_*`, `STRIPE_*`, `RAZORPAY_*`, `XENDIT_*`, etc.) if used
 
 Run `php artisan key:generate` to populate `APP_KEY`.
 
@@ -141,7 +141,7 @@ On Windows, link creation should work; if not, manually copy `storage/app/public
 
 ## Running the application
 
-- Using XAMPP: place the project under `htdocs` and navigate to `http://localhost/salepro/public`.
+- Using XAMPP: place the project under `htdocs` and navigate to `http://localhost/salepro`.
 - Using Laravel's built-in server for development:
 
 ```
@@ -251,4 +251,4 @@ This project uses Laravel and many community packages. Check `composer.json` and
 
 ---
 
-If you'd like, I can further extend sections with screenshots, ER-diagrams, or an environment-specific checklist for production vs staging. Tell me which sections you want expanded.
+For further assistance, please refer to the [official Laravel documentation](https://laravel.com/docs) or open an issue in this repository. Happy coding!
