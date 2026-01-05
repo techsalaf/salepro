@@ -45,7 +45,7 @@ if (isset($_GET['_error'])) {
 				</form>
 			</div>
 			<hr>
-			<footer>Copyright &copy; LionCoders. All Rights Reserved.</footer>
+			<footer>Copyright &copy; NekxrLab. All Rights Reserved.</footer>
 		</div>
 	</div>
 

@@ -99,7 +99,7 @@ if (ini_get('allow_url_fopen')) {
                 <?php else: ?>
 
                 <br /><?php    echo $ltext; ?><br />Sorry. The requirements of SalepProSaaS is not available on your
-                server. Please contact with us- hello@lion-coders.com with this code- <?php    echo $passed; ?> Or contact
+                server. Please contact with us- hello@nekxr-lab.com with this code- <?php    echo $passed; ?> Or contact
                 with your server administrator.<br><br>
                 <a href="#" class="btn btn-primary disabled">Correct The Problem To Continue</a>
 
@@ -107,7 +107,7 @@ if (ini_get('allow_url_fopen')) {
 
             </div>
             <hr>
-            <footer>Copyright &copy; LionCoders. All Rights Reserved.</footer>
+            <footer>Copyright &copy; NekxrLab. All Rights Reserved.</footer>
         </div>
     </div>
 </body>

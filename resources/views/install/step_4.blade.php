@@ -29,7 +29,7 @@
                 </p>
             </div>
             <hr>
-            <footer>Copyright &copy; LionCoders. All Rights Reserved.</footer>
+            <footer>Copyright &copy; NekxrLab. All Rights Reserved.</footer>
         </div>
     </div>
     <script type="text/javascript" src="{{ asset('install-assets/js/jquery.min.js')}}"></script>

@@ -870,7 +870,7 @@
 
     <footer class="main-footer">
         <div class="container-fluid">
-            <p>&copy; {{$general_settings->site_title ?? "no title"}} | {{ __('Developed by')}} <a href="https://lion-coders.com" class="external">{{ __('LionCoders')}}</a></p>
+            <p>&copy; {{$general_settings->site_title ?? "no title"}} | {{ __('Developed by')}} <a href="https://amudarasheed.dev" class="external">{{ __('NekxrLab')}}</a></p>
         </div>
     </footer>
 </div>

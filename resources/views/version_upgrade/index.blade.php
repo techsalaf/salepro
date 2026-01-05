@@ -36,7 +36,7 @@
                     <h4 class="text-center text-success"> A new version <b>{{ $versionUpgradeData['demo_version'] }}</b> has
                         been released.</h4>
                     <p>Before upgrading, we highly recomended you to keep a backup of your current script and database.</p>
-                    <p><a target="_blank" href="{{ config('database.connections.saleprosaas_landlord') ? 'https://lion-coders.com/software/salepro-saas-pos-inventory-saas-php-script' : 'https://lion-coders.com/software/salepro-inventory-management-system-with-pos-hrm-accounting' }}">Change Log</a></p>
+                    <p><a target="_blank" href="{{ config('database.connections.saleprosaas_landlord') ? 'https://nekxr-lab.com/software/salepro-saas-pos-inventory-saas-php-script' : 'https://nekxr-lab.com/software/salepro-inventory-management-system-with-pos-hrm-accounting' }}">Change Log</a></p>
                 </div>
             </div>
 
