@@ -1,79 +1,254 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# SalePro — Point-of-Sale / Retail Management Web Application
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This repository contains SalePro, a Laravel-based web application for retail, inventory and sales management. This README provides a comprehensive guide to setting up, developing, testing, and deploying the application on a developer workstation (Windows/XAMPP) as well as common operational tasks.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Requirements](#requirements)
+- [Quick Start (Windows / XAMPP)](#quick-start-windows--xampp)
+- [Full Setup](#full-setup)
+	- [Clone repository](#clone-repository)
+	- [Environment variables](#environment-variables)
+	- [Composer dependencies](#composer-dependencies)
+	- [Node assets](#node-assets)
+	- [Database setup, migrations and seeders](#database-setup-migrations-and-seeders)
+	- [Storage and permissions](#storage-and-permissions)
+- [Running the application](#running-the-application)
+- [Testing](#testing)
+- [Common artisan tasks](#common-artisan-tasks)
+- [Application structure](#application-structure)
+- [Deployment checklist](#deployment-checklist)
+- [Contributing guide](#contributing-guide)
+- [Troubleshooting](#troubleshooting)
+- [Credits & License](#credits--license)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP 8.0+ (verify with `php -v`)
+- Composer (latest stable)
+- Node.js 14+ and npm (or Yarn)
+- MySQL / MariaDB (or other supported DB)
+- Git
+- XAMPP (Windows) or equivalent LAMP stack for local development
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+If you plan to run services like queues or websockets, also install Redis and Supervisor (or use a service provider on production).
 
-## Laravel Sponsors
+## Quick Start (Windows / XAMPP)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1. Install XAMPP and ensure Apache & MySQL are running.
+2. Place the repository in `C:\xampp\htdocs\salepro` (already present).
+3. Copy `.env.example` to `.env` and configure DB credentials, mail, and other keys.
+4. From an elevated PowerShell (open as Administrator) run:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+```powershell
+Push-Location 'C:\xampp\htdocs\salepro'
+composer install --no-interaction --prefer-dist
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan storage:link
+npm install
+npm run dev
+```
 
-## Contributing
+5. Open browser to `http://localhost/salepro/public` or configure a virtual host to point to the `public` directory for a cleaner URL.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Note: On Windows you might need to use `copy` instead of `cp` or perform the `.env` copy via Explorer.
 
-## Code of Conduct
+## Full Setup
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Clone repository
 
-## Security Vulnerabilities
+If you haven't already cloned:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+git clone https://github.com/techsalaf/salepro.git
+cd salepro
+```
 
-## License
+### Environment variables
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# salepro
+- Duplicate `.env.example` and update the following at minimum:
+	- `APP_NAME`, `APP_ENV`, `APP_URL`
+	- `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
+	- `MAIL_*` settings for password resets and notifications
+	- Payment provider keys (`STRIPE_*`, `RAZORPAY_*`, `XENDIT_*`, etc.) if used
+
+Run `php artisan key:generate` to populate `APP_KEY`.
+
+### Composer dependencies
+
+Install PHP dependencies:
+
+```bash
+composer install
+php artisan migrate
+php artisan db:seed
+```
+
+If you see package installation issues, run `composer diagnose` and consider increasing memory by running:
+
+```powershell
+php -d memory_limit=-1 composer install
+```
+
+### Node assets
+
+Install JS/CSS dependencies and build assets:
+
+```bash
+npm install
+npm run dev      # development build w/ hot-reload
+npm run prod     # production minified assets
+```
+
+Alternatively use `yarn`.
+
+### Database setup, migrations and seeders
+
+- Configure DB in `.env`.
+- Run migrations:
+
+```
+php artisan migrate
+```
+
+- Seed test/sample data (if seeders exist):
+
+```
+php artisan db:seed
+```
+
+If you need to refresh the DB:
+
+```
+php artisan migrate:refresh --seed
+```
+
+### Storage and permissions
+
+Create the symbolic link to make storage accessible from `public`:
+
+```
+php artisan storage:link
+```
+
+On Windows, link creation should work; if not, manually copy `storage/app/public` contents into `public/storage` for testing.
+
+## Running the application
+
+- Using XAMPP: place the project under `htdocs` and navigate to `http://localhost/salepro/public`.
+- Using Laravel's built-in server for development:
+
+```
+php artisan serve --host=127.0.0.1 --port=8000
+```
+
+This runs a development server at `http://127.0.0.1:8000`.
+
+### Background workers and scheduler
+
+- Run queue workers:
+
+```
+php artisan queue:work --tries=3
+```
+
+- Schedule (add to cron on Linux; on Windows use Task Scheduler):
+
+```
+* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+```
+
+## Testing
+
+Run PHPUnit tests:
+
+```
+vendor\\bin\\phpunit
+```
+
+Or via Composer script:
+
+```
+composer test
+```
+
+If tests require a separate testing database, create one and configure the `phpunit.xml` or `phpunit.xml.bak` accordingly.
+
+## Common artisan tasks
+
+- Cache config: `php artisan config:cache`
+- Clear cache: `php artisan cache:clear`
+- Clear views: `php artisan view:clear`
+- Optimize autoloaders: `composer dump-autoload -o`
+
+## Application structure (high level)
+
+- `app/` — core application logic (Controllers, Models, Services, Traits)
+- `Modules/` — modular features (e.g., `Modules/Manufacturing`)
+- `routes/` — application routes (`web.php`, `api.php`)
+- `resources/views/` — Blade templates
+- `public/` — web root (assets, entry `index.php`)
+- `database/` — migrations, seeders, factories
+- `storage/` — logs, compiled views, file storage
+
+Key files to inspect when developing:
+
+- `app/Providers` for service bindings
+- `config/` directory for environment sensitive settings
+- `routes/web.php` and `routes/api.php` for endpoints
+
+## Development notes specific to this repo
+
+- There is an `unzipper.php` helper at the repository root used for package extraction or custom import flows — inspect it if you work on installers or importer utilities.
+- Modules are under the `Modules/` directory; each module commonly includes its own `Controllers`, `Models`, `Migrations` and `Routes`.
+
+## Deployment checklist
+
+Before deploying to production, ensure:
+
+- `APP_ENV=production` and `APP_DEBUG=false` in `.env`
+- Proper `APP_KEY` is set
+- Cached config & routes: `php artisan config:cache` and `php artisan route:cache`
+- Assets built with `npm run prod` and deployed to `public/`
+- `storage` and `bootstrap/cache` writable by web server
+- Database backups exist and migration plan verified
+- Queues configured and workers running (Supervisor systemd on Linux)
+
+## Contributing guide
+
+- Fork the repo and create a feature branch: `git checkout -b feature/short-description`
+- Follow PSR-12 code style and run `composer test` before submitting PRs.
+- Provide clear PR descriptions and reference related issues.
+
+## Troubleshooting
+
+- 500 errors: check `storage/logs/laravel.log` and ensure `APP_DEBUG=true` for local debugging.
+- Permissions issues: ensure `storage` and `bootstrap/cache` are writable.
+- Composer memory errors: run with increased memory: `php -d memory_limit=-1 composer install`.
+
+## Useful commands summary
+
+```
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan storage:link
+npm run dev
+php artisan serve
+```
+
+## Credits & License
+
+This project uses Laravel and many community packages. Check `composer.json` and `package.json` for full credits. The project is distributed under the MIT license unless otherwise specified in repository metadata.
+
+---
+
+If you'd like, I can further extend sections with screenshots, ER-diagrams, or an environment-specific checklist for production vs staging. Tell me which sections you want expanded.
